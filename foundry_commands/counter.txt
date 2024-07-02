@@ -1,0 +1,21 @@
+//kakarot //
+forge create --rpc-url https://sepolia-rpc.kakarot.org --private-key d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9 src/Counter.sol:Counter
+cast send 0x8F5A45FF83D7e318AeAD85C2e484581B907C4D49 "setNumber(uint256)" 0 --rpc-url https://sepolia-rpc.kakarot.org --private-key d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9
+cast call 0x8F5A45FF83D7e318AeAD85C2e484581B907C4D49 "number()" --rpc-url https://sepolia-rpc.kakarot.org
+cast send 0x8F5A45FF83D7e318AeAD85C2e484581B907C4D49 "increment()" --rpc-url https://sepolia-rpc.kakarot.org --private-key d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9
+
+// Seplia //
+forge create --rpc-url https://sepolia.infura.io/v3/2f57c80fb95b4fb38725aea62bc77c1d --private-key d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9 src/Counter.sol:Counter
+cast call 0x81AdAd56Ef1dDE32D7006e02f92725f23DEe2a5f "number()" --rpc-url https://sepolia.infura.io/v3/2f57c80fb95b4fb38725aea62bc77c1d
+cast send 0x81AdAd56Ef1dDE32D7006e02f92725f23DEe2a5f "increment()" --rpc-url https://sepolia.infura.io/v3/2f57c80fb95b4fb38725aea62bc77c1d --private-key d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9
+
+//Polygon Cardona zkEVM Testnet
+forge create --rpc-url https://rpc.cardona.zkevm-rpc.com --private-key d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9 src/Counter.sol:Counter
+cast call 0x8F5A45FF83D7e318AeAD85C2e484581B907C4D49 "balanceOf(address)" 0x9b5623432dF06A583f7E2dDE6AD26507ae491FB0 --rpc-url https://rpc.cardona.zkevm-rpc.com
+cast send 0x8F5A45FF83D7e318AeAD85C2e484581B907C4D49 "transfer(address,uint256)" 0xDFA353b1bD925dB92D492BfD3fEe606eFAe00dAd 100 --rpc-url https://rpc.cardona.zkevm-rpc.com --private-key d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9
+
+
+Counter Increment:
+kakarot: 26304 - avg time between blocks: 24 sec - 
+Sepolia: 43404
+
