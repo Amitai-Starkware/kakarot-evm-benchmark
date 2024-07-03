@@ -1,6 +1,9 @@
 import subprocess
 import time
-import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Function to run a shell command and get the output
 def run_command(command):
@@ -11,7 +14,10 @@ def run_command(command):
 
 # RPC URL and private key
 rpc_url = "https://rpc.cardona.zkevm-rpc.com"
-private_key = "d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9"
+private_key = os.getenv("PRIVATE_KEY")
+
+if not private_key:
+    raise Exception("Private key not found. Please set it in the .env file.")
 
 # Deploy the LoopStorageContract
 deploy_command = f"forge create --rpc-url {rpc_url} --private-key {private_key} src/LoopStorage.sol:LoopStorage --legacy"

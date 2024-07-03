@@ -1,5 +1,9 @@
 import subprocess
 import time
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Function to run a shell command and get the output
 def run_command(command):
@@ -10,7 +14,7 @@ def run_command(command):
 
 # RPC URL and private key
 rpc_url = "https://rpc.cardona.zkevm-rpc.com"
-private_key = "d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9"
+private_key = os.getenv("PRIVATE_KEY")
 
 # Deploy the AmitaiToken contract
 deploy_command = f"forge create --rpc-url {rpc_url} --private-key {private_key} src/AmitaiToken.sol:AmitaiToken --legacy"

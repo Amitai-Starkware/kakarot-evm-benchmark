@@ -1,5 +1,10 @@
 import subprocess
 import time
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
 
 # Function to run a shell command and get the output
 def run_command(command):
@@ -10,7 +15,10 @@ def run_command(command):
 
 # RPC URL and private key
 rpc_url = "https://sepolia-rpc.kakarot.org"
-private_key = "d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9"
+private_key = os.getenv("PRIVATE_KEY")
+
+if not private_key:
+    raise Exception("Private key not found. Please set it in the .env file.")
 
 # Deploy the Counter contract
 deploy_command = f"forge create --rpc-url {rpc_url} --private-key {private_key} src/Counter.sol:Counter"
@@ -44,6 +52,7 @@ for i in range(5):
     print(f"Time between transaction {i+1} and next: {elapsed_time:.2f} seconds")
 
     # Check the counter value after each increment
+    get_counter_value_command = f"cast call {contract_address} 'get()' --rpc-url {rpc_url}"
     current_counter_value = int(run_command(get_counter_value_command), 16)
     print(f"Counter value after transaction {i+1}: {current_counter_value}")
 

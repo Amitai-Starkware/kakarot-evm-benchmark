@@ -1,8 +1,11 @@
 import subprocess
 import time
-import json
+import os
+from dotenv import load_dotenv
 
-# Function to run a shell command and get the output
+# Load environment variables from the .env file
+load_dotenv()
+
 def run_command(command):
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     if result.returncode != 0:
@@ -11,7 +14,7 @@ def run_command(command):
 
 # RPC URL and private key
 rpc_url = "https://sepolia-rpc.kakarot.org"
-private_key = "d3f1c6e55105bebef8309d8725f05c086e7e7f61fa4e3a57107428843bceb1d9"
+private_key = 
 
 # Deploy the ComplexContract
 deploy_command = f"forge create --rpc-url {rpc_url} --private-key {private_key} src/ComplexContract.sol:ComplexContract"
