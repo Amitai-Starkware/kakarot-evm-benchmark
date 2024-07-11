@@ -1,0 +1,4 @@
+forge verify-contract 0xa9D8D96A38341f03706808CB653611Da5f0DB0BE src/ComplexContract.sol:ComplexContract --verifier-url 'https://api.routescan.io/v2/network/testnet/evm/1802203764_2/etherscan'
+--etherscan-api-key "kakarot_sepolia"
+--num-of-optimizations 200
+--compiler-version 0.8.13
